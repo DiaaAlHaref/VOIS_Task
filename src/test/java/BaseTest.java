@@ -16,6 +16,7 @@ import pom.FirstResultPage;
 import pom.LandingPage;
 import pom.LastPage;
 import pom.SecondResultPage;
+import utility.UiActions;
 
 /**
  * BaseClass Demonstrates WebDrivers loading and other classes inherit from
@@ -24,7 +25,7 @@ import pom.SecondResultPage;
  */
 
 public class BaseTest {
-    static WebDriver driver;
+
     LandingPage landingPage;
     FirstResultPage firstResultPage;
     SecondResultPage secondResultPage;
@@ -37,36 +38,36 @@ public class BaseTest {
      */
     @BeforeClass
     @Parameters({"browser"}) //To Run Test From testng.xml file
-    public void startupDrivers(@Optional("ie") String browser) {
+    public void startupDrivers(@Optional("chrome") String browser) {
         //@optional used to run test by default value passed to it ex. ("chrome")
         switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                UiActions.driver = new ChromeDriver();
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
+                UiActions.driver = new FirefoxDriver();
                 break;
             case "ie":
                 System.setProperty("webdriver.ie.driver","src//main//resources//IEDriverServer.exe");
-                driver = new InternetExplorerDriver();
+                UiActions.driver = new InternetExplorerDriver();
                 break;
         }
 
-        driver.manage().window().maximize();
-        landingPage = new LandingPage(driver);
-        firstResultPage = new FirstResultPage(driver);
-        secondResultPage = new SecondResultPage(driver);
-        lastPage = new LastPage(driver);
+        UiActions.driver.manage().window().maximize();
+        landingPage = new LandingPage();
+        firstResultPage = new FirstResultPage();
+        secondResultPage = new SecondResultPage();
+        lastPage = new LastPage();
 
     }
 
 
     @AfterClass
     public void tearDownBrowser() {
-        /*if (driver != null) {
-            driver.quit();
-        }*/
+        if (UiActions.driver != null) {
+            UiActions.driver.quit();
+        }
     }
 }
