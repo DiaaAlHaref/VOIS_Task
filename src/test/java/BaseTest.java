@@ -1,10 +1,15 @@
 /**
- * This is a Framework for VOIS CoE Team, performed on a task using Intellij IDE
+ * This is a task to search for a keyword then count the search result elements in the Second result page,
+ * Third result page and then assert on the number of elements occured in both pages
+ * /
+ * <p>
+ * /**
+ * This Framework for VOIS CoE Team, performed on a task using Intellij IDE
  * Selenium WebDriver, TestNG, Allure Report Framework, Data Driver Framework
  */
 
+
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -32,7 +37,7 @@ public class BaseTest {
     LastPage lastPage;
 
     /**
-     * loads the drivers Chrome, FireFox, InternetExplorer when passing
+     * loads the drivers Chrome, FireFox, InternetExplorer
      *
      * @param browser takes name of the browsers as string "chrome" , "firefox" , "ie"
      */
@@ -50,7 +55,7 @@ public class BaseTest {
                 UiActions.driver = new FirefoxDriver();
                 break;
             case "ie":
-                System.setProperty("webdriver.ie.driver","src//main//resources//IEDriverServer.exe");
+                System.setProperty("webdriver.ie.driver", "src//main//resources//IEDriverServer.exe");
                 UiActions.driver = new InternetExplorerDriver();
                 break;
         }
@@ -63,11 +68,11 @@ public class BaseTest {
 
     }
 
-
+    /**
+     * Exit the running browser
+     */
     @AfterClass
     public void tearDownBrowser() {
-        if (UiActions.driver != null) {
-            UiActions.driver.quit();
-        }
+        UiActions.driver.quit();
     }
 }
