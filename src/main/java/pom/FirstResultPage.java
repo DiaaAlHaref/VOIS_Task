@@ -1,7 +1,7 @@
 package pom;
 
 import org.openqa.selenium.By;
-import utility.UiActions;
+import utilities.UiActions;
 /**
  * FirstResultPage Class represents the first search result page
  */

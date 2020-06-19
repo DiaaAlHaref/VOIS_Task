@@ -1,7 +1,7 @@
 package pom;
 
 import org.openqa.selenium.By;
-import utility.UiActions;
+import utilities.UiActions;
 /**
  * LandingPage Class represents the homepage that URL Navigate to
  * Contains Element locators for searchbar and String to search for

@@ -1,7 +1,7 @@
 package pom;
 
 import org.openqa.selenium.By;
-import utility.UiActions;
+import utilities.UiActions;
 /**
  * SecondResultPage Class represents the Second search result page
  */

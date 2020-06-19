@@ -10,6 +10,8 @@
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.logging.Log;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -17,11 +19,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.testng.log4testng.Logger;
 import pom.FirstResultPage;
 import pom.LandingPage;
 import pom.LastPage;
 import pom.SecondResultPage;
-import utility.UiActions;
+import utilities.Logging;
+import utilities.UiActions;
 
 /**
  * BaseClass Demonstrates WebDrivers loading and other classes inherit from
@@ -30,6 +34,8 @@ import utility.UiActions;
  */
 
 public class BaseTest {
+
+    Logging Log = new Logging();
 
     LandingPage landingPage;
     FirstResultPage firstResultPage;
@@ -43,7 +49,7 @@ public class BaseTest {
      */
     @BeforeClass
     @Parameters({"browser"}) //To Run Test From testng.xml file
-    public void startupDrivers(@Optional("chrome") String browser) {
+    public void startupDrivers(@Optional("ie") String browser) {
         //@optional used to run test by default value passed to it ex. ("chrome")
         switch (browser) {
             case "chrome":
