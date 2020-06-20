@@ -1,5 +1,6 @@
-package pom;
+package pages;
 
+import fileReaders.PropertiesFile;
 import org.openqa.selenium.By;
 import utilities.UiActions;
 /**
@@ -13,15 +14,9 @@ import utilities.UiActions;
 public class LandingPage {
 
     UiActions uiActions = new UiActions();
-    private By keywordLocator = By.name("q");
-    // private String keyword = "Vodafone";
 
-    /**
-     * Method to Navigate directly to url
-     */
-    public void openUrl() {
-        UiActions.driver.navigate().to("https://www.google.com/ncr");
-    }
+    private String[] view = PropertiesFile.propertiesFileReader(new String[]{"keywordLocator"});
+    private By keywordLocator = By.name(view[0]);
 
     /**
      * Method To Find Element locator and send keyword to search for it

@@ -1,6 +1,6 @@
 package utilities;
 /**
- * This Class Handle most needed exceptions in the framework
+ * This Class Handle most needed exceptions in the framework not all of them
  */
 
 import org.openqa.selenium.*;

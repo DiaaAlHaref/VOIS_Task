@@ -1,9 +1,6 @@
 package utilities;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,7 +10,8 @@ public class UiActions {
     public static WebDriver driver;
     public static WebDriverWait wait;
     private WebElement element;
-    private List<WebElement> webElementList;
+    private List<WebElement> elements;
+
 
     /**
      * Find Element
@@ -22,7 +20,38 @@ public class UiActions {
      * @return Element
      */
     public UiActions findElementAndReturn(By locator) {
-        element = driver.findElement(locator);
+        try {
+            element = driver.findElement(locator);
+        } catch (InvalidSelectorException e) {
+            HandleExceptions.InvalidSelectorExceptionHandling(e);
+        } catch (NoSuchElementException e) {
+            HandleExceptions.NoSuchElementExceptionHandling(e);
+        } catch (NullPointerException e) {
+            HandleExceptions.NullPointerExceptionHandling(e);
+        } catch (ElementNotVisibleException e) {
+            HandleExceptions.ElementNotVisibleExceptionHandling(e);
+        }
+        return this;
+    }
+
+    /**
+     * Find List of Elements
+     *
+     * @param locator
+     * @return
+     */
+    public UiActions findListOfElements(By locator) {
+        try {
+            elements = driver.findElements(locator);
+        } catch (InvalidSelectorException e) {
+            HandleExceptions.InvalidSelectorExceptionHandling(e);
+        } catch (NoSuchElementException e) {
+            HandleExceptions.NoSuchElementExceptionHandling(e);
+        } catch (NullPointerException e) {
+            HandleExceptions.NullPointerExceptionHandling(e);
+        } catch (ElementNotVisibleException e) {
+            HandleExceptions.ElementNotVisibleExceptionHandling(e);
+        }
         return this;
     }
 
@@ -33,26 +62,42 @@ public class UiActions {
      * @return Element
      */
     public UiActions sendKeysToElement(String text) {
-        element.sendKeys(text);
+        try {
+            element.sendKeys(text);
+        } catch (NullPointerException e) {
+            HandleExceptions.NullPointerExceptionHandling(e);
+        } catch (NoSuchElementException e) {
+            HandleExceptions.NoSuchElementExceptionHandling(e);
+        }
         return this;
     }
 
     /**
      * Handle type of waits either visible or clickable
      *
-     * @param locator    element to wait for
+     * @param locator    locator of element to wait for
      * @param typeOfWait type of the wait either "visible" or "clickable"
      */
-    public void waitForElement(By locator, String typeOfWait) {
-        wait = new WebDriverWait(driver, 1000);
-        switch (typeOfWait) {
-            case "visible":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-                break;
-            case "clickable":
-                wait.until(ExpectedConditions.elementToBeClickable(locator));
-                break;
+    public UiActions waitForElement(By locator, String typeOfWait) {
+
+        try {
+            wait = new WebDriverWait(driver, 1000);
+            switch (typeOfWait) {
+                case "visible":
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+                    break;
+                case "clickable":
+                    wait.until(ExpectedConditions.elementToBeClickable(locator));
+                    break;
+            }
+        } catch (ElementNotVisibleException e) {
+            HandleExceptions.ElementNotVisibleExceptionHandling(e);
+        } catch (ElementNotInteractableException e) {
+            HandleExceptions.ElementNotInteractableExceptionHandling(e);
+        } catch (TimeoutException e) {
+            HandleExceptions.TimeoutExceptionHandling(e);
         }
+        return this;
     }
 
     /**
@@ -61,25 +106,30 @@ public class UiActions {
      * @param action takes type of action either "click" or "submit"
      */
     public void takeActionOnElement(String action) {
-        switch (action) {
-            case "click":
-                element.click();
-                break;
-            case "submit":
-                element.submit();
-                break;
+        try {
+            switch (action) {
+                case "click":
+                    element.click();
+                    break;
+                case "submit":
+                    element.submit();
+                    break;
+            }
+        } catch (NullPointerException e) {
+            HandleExceptions.NullPointerExceptionHandling(e);
+        } catch (ElementNotInteractableException e) {
+            HandleExceptions.ElementNotInteractableExceptionHandling(e);
         }
+
     }
 
     /**
      * Get Size for list of elements have the same path
      *
-     * @param locator path locator for list of elements
      * @return elements size
      */
-    public int getSizeOfElements(By locator) {
-        webElementList = driver.findElements(locator);
-        return webElementList.size();
+    public int getSizeOfElements() {
+        return elements.size();
     }
 
     /**

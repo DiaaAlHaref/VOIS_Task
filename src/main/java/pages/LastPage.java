@@ -1,5 +1,6 @@
-package pom;
+package pages;
 
+import fileReaders.PropertiesFile;
 import org.openqa.selenium.By;
 import utilities.UiActions;
 /**
@@ -11,8 +12,8 @@ import utilities.UiActions;
  */
 public class LastPage {
     UiActions uiActions = new UiActions();
-
-    By listResultLocator = By.xpath("//div[@id='rso']//div[@class='g']");
+    private String[] view = PropertiesFile.propertiesFileReader(new String[]{"listResultLocator"});
+    private final By listResultLocator = By.xpath(view[0]);
 
     /**
      * Get Number of Results in the page
@@ -20,6 +21,6 @@ public class LastPage {
      * @return number of elements
      */
     public int countNumberOfResultsInThird_Page() {
-        return uiActions.getSizeOfElements(listResultLocator);
+        return uiActions.findListOfElements(listResultLocator).getSizeOfElements();
     }
 }

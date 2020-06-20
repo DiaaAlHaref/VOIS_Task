@@ -3,12 +3,12 @@ package utilities;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-public class Logging {
+public class Logs {
 
     /**
      * Initialize Log4j logs
      */
-    private Logger Log = Logger.getLogger(Logging.class.getName());
+    private Logger Log = Logger.getLogger(Logs.class.getName());
 
     public void log4PropertiesConfiguration() {
         PropertyConfigurator.configure("src//main//resources//LogConfiguration//Log4j.properties");
@@ -86,7 +86,7 @@ public class Logging {
     }
 
     public static void main(String[] args) {
-        Logging log = new Logging();
+        Logs log = new Logs();
         log.info(args.toString());
         log.warn(args.toString());
         log.error(args.toString());
