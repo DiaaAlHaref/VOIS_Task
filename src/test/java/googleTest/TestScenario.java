@@ -19,7 +19,7 @@ import java.io.ByteArrayInputStream;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class TestScenario extends ParallelTest {
+public class TestScenario extends BaseTest {
 
     LandingPage landingPage = new LandingPage(); //Instantiation of LandPage object
     FirstResultPage firstResultPage = new FirstResultPage(); //Instantiation of FirstPage object
