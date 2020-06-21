@@ -1,10 +1,18 @@
-<?xml version="1.0"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test Suite">
-    <parameter name="browser" value="firefox"/>
-    <test name="ParallelTest" preserve-order="false">
+<suite name="ParallelTesting" parallel="tests" thread-count="1">
+
+    <test name="TestWithChrome">
+        <parameter name="browserParallel" value="firefox" />
         <classes>
-            <class name="GoogleTest.TestScenario"/>
+            <class name="googleTest.TestScenario"/>
         </classes>
     </test>
+
+    <test name="TestWithFirefox">
+        <parameter name="browserParallel" value="chrome" />
+        <classes>
+            <class name="googleTest.TestScenario"/>
+        </classes>
+    </test>
+
 </suite>
