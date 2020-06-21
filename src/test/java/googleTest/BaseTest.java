@@ -1,4 +1,4 @@
-package GoogleTest;
+package googleTest;
 /**
  * This is a task to search for a keyword then count the search result elements in the Second result page,
  * Third result page and then assert on the number of elements occured in both pages
@@ -35,7 +35,7 @@ public class BaseTest {
     Logs Log = new Logs();
 
     String[] view = PropertiesFile.propertiesFileReader(new String[]{"baseUrl"});
-    private String url = view[0] + "ncr";
+    protected String url = view[0] + "ncr";
 
     /**
      * loads the drivers Chrome, FireFox, InternetExplorer
@@ -65,7 +65,7 @@ public class BaseTest {
          * Navigate directly to url
          * <p>Maximize window size</p>
          */
-        UiActions.driver.navigate().to(url);   //Naviagte to target url
+        UiActions.driver.navigate().to(url);   //Navigate to target url
         Log.info("Navigate to url");
 
         UiActions.driver.manage().window().maximize();  //Maximize browser window size
@@ -83,7 +83,7 @@ public class BaseTest {
             // in case of test case failure take screenshots
             System.out.println("*** Test execution ***" + " " + result.getMethod().getMethodName() + "  >>   " + " failed...");
             System.out.println("Taking Screenshot...");
-            ScreenShot.CaptureScreenshots(UiActions.driver, result.getName());
+            ScreenShot.CaptureScreenshots(result.getName());
         }
     }
 

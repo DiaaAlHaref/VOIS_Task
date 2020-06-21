@@ -15,15 +15,14 @@ public class ScreenShot {
     /**
      * Method Create Directory Screenshot to store images for failure test
      *
-     * @param driver         object driver of type WebDriver
      * @param ScreenShotName Name of the Test.png
      */
-    public static void CaptureScreenshots(WebDriver driver, String ScreenShotName) {
+    public static void CaptureScreenshots(String ScreenShotName) {
         Path dest = Paths.get(".//ScreenShots//", ScreenShotName + ".png");
         try {
             Files.createDirectories(dest.getParent());  //Create Directory for ScreenShot images
             FileOutputStream out = new FileOutputStream(dest.toString());   //Create object for Image file of type output stream
-            out.write(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)); //Write in file the image taken output bytes (.png)
+            out.write(((TakesScreenshot) UiActions.driver).getScreenshotAs(OutputType.BYTES)); //Write in file the image taken output bytes (.png)
             out.close();
 
         } catch (IOException e) {

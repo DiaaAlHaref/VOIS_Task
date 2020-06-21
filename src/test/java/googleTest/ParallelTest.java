@@ -14,6 +14,11 @@ import utilities.UiActions;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * ParallelTest Class Demonstrates Test execution on selenium Grid hub with number of different drivers nodes
+ *
+ * @author Diaa AlHaref
+ */
 public class ParallelTest {
 
     Logs Log = new Logs();

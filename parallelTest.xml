@@ -1,15 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="ParallelTesting" parallel="tests" thread-count="1">
+<suite name="ParallelTesting" parallel="tests" thread-count="2">
 
     <test name="TestWithChrome">
-        <parameter name="browserParallel" value="firefox" />
+        <parameter name="browserParallel" value="chrome" />
         <classes>
             <class name="googleTest.TestScenario"/>
         </classes>
     </test>
 
     <test name="TestWithFirefox">
-        <parameter name="browserParallel" value="chrome" />
+        <parameter name="browserParallel" value="firefox" />
         <classes>
             <class name="googleTest.TestScenario"/>
         </classes>

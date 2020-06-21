@@ -13,7 +13,10 @@ import java.util.Map;
 
 public class ReadFromExcelSheet {
 
-
+    /**
+     * Method return Test Data from file using Hashmap class
+     * @return obj array of object[][] key, value form
+     */
     public static Object[][] returnData() {
 
         File file = new File("src//test//resources//DataDriven//TestData.xlsx");
@@ -46,6 +49,7 @@ public class ReadFromExcelSheet {
             Map<Object, Object> dataMap = new HashMap<>();
             for (int j = 0; j < lastCellNum; j++) {
                 dataMap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
             }
             obj[i][0] = dataMap;
         }

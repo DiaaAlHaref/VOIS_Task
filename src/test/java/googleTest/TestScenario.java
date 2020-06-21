@@ -1,4 +1,4 @@
-package GoogleTest;
+package googleTest;
 
 import fileReaders.ReadFromExcelSheet;
 import io.qameta.allure.Allure;
@@ -19,7 +19,7 @@ import java.io.ByteArrayInputStream;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class TestScenario extends BaseTest {
+public class TestScenario extends ParallelTest {
 
     LandingPage landingPage = new LandingPage(); //Instantiation of LandPage object
     FirstResultPage firstResultPage = new FirstResultPage(); //Instantiation of FirstPage object
@@ -72,10 +72,13 @@ public class TestScenario extends BaseTest {
 
         Log.endTestCase("test_SearchForVodafoneAndAssertOnSearchResults");
 
-
     }
 
-
+    /**
+     * Data Provider linked with excel sheet method to return data in form of key and value
+     *
+     * @return key and value
+     */
     @DataProvider(name = "Locators")
     public Object[][] getDataFromExcel() {
         final Object[][] objects = ReadFromExcelSheet.returnData();
